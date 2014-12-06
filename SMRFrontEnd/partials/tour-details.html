@@ -1,0 +1,34 @@
+<!-- Image Column -->
+<div class=row>
+	<div class="col-sm-6">
+		<div class="portfolio-item">
+			<div class="portfolio-image">
+				<a href="#/tours"><img ng-src="img/tours/{{tour.TourId}}.jpg"
+					alt="{{tour.Title}}"></a>
+			</div>
+		</div>
+	</div>
+	<!-- End Image Column -->
+	<!-- Project Info Column -->
+	<div class="portfolio-item-description col-sm-6">
+		<h3>{{tour.Title}}</h3>
+		<p ng-bind-html="tour.Description"></p>
+		<ul class="no-list-style">
+			<li><b>Цена:</b> {{tour.Price}} евро</li>
+			<li><b>Тип тура:</b> <span ng-repeat="type in tour.tourTypes">{{type.TypeName}} </span></li>
+			<li><b>Маршрут:</b> {{tour.Route}}</li>
+			<li><b>Транспорт:</b> {{tour.Transport}}</li>
+			<li><b>Длительность:</b> {{tour.tourDays.length}}</li>
+			<li><b>Страны:</b> <span ng-repeat="country in tour.tourCountries">{{country.CountryName}} </span></li>
+			<li><b>Даты выездов:</b> 31.12.14</li>
+		</ul>
+	</div>
+</div>
+<div class="row" ng-repeat="day in tour.tourDays">
+	<div class="col-sm-12">
+		<h4>День {{$index + 1}}</h4>
+		<h5>{{day.Route}}</h5>
+		<p>{{day.DayContent}}</p>
+	</div>
+</div>
+<!-- End Project Info Column -->
