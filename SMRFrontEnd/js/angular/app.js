@@ -1,5 +1,5 @@
 var tourshopApp = angular.module('tourshopApp', [ 'ngRoute',
-		'tourshopControllers', 'tourshopServices' ]);
+		'tourshopControllers', 'tourshopServices', 'tourshopFilters' ]);
 tourshopApp.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/tours', {
 		templateUrl : 'partials/tour-list.html',

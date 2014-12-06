@@ -8,9 +8,20 @@ tourshopControllers.controller('TourListCtrl', [ '$scope', 'Tour',
 		} ]);
 
 tourshopControllers.controller('TourDetailCtrl', [ '$scope', '$routeParams',
-		'Tour', function($scope, $routeParams, Tour) {
+		'$sce', 'Tour', function($scope, $routeParams, $sce, Tour) {
 			$scope.tour = Tour.get({
 				tourId : $routeParams.tourId,
 				expand : 'departures,tourDays,tourCountries,tourTypes'
+			}, function(data, status) {
+				$scope.tour.RouteMap = $sce.trustAsHtml($scope.tour.RouteMap);
 			});
+		} ]);
+
+tourshopControllers.controller('TourOrderFormController', [
+		'$scope',
+		function($scope) {
+			$scope.tourOrder = {};
+			$scope.submit = function(tourOrderForm) {
+				alert('submit pressed ');
+			};
 		} ]);
