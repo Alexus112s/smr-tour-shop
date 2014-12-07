@@ -27,6 +27,9 @@ $config = [
 												'order',
 												'departure',
 												'country' 
+										],
+										'extraPatterns' => [ 
+												'GET search' => 'search' 
 										] 
 								] 
 						] 
@@ -40,7 +43,9 @@ $config = [
 				],
 				'user' => [ 
 						'identityClass' => 'app\models\User',
-						'enableAutoLogin' => true 
+						'enableAutoLogin' => true,
+						'enableSession' => false,
+						'loginUrl' => null 
 				],
 				'errorHandler' => [ 
 						'errorAction' => 'site/error' 

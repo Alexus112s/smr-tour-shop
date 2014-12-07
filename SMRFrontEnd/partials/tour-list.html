@@ -1,13 +1,3 @@
-<a class="tour-link" href="#/tours/{{tour.TourId}}" ng-repeat="tour in tours">
-	<div class="row tour-shop-item">
-		<div class="col-sm-4">
-			<div class="tour-image">
-				<img ng-src="img/tours/{{tour.TourId}}.jpg" alt="{{tour.Title}}">
-			</div>
-		</div>
-		<div class="col-sm-8">
-			<h3>{{tour.Title}}</h3>
-			<p ng-bind-html="tour.Description"></p>
-		</div>
-	</div>
-</a>
+<div class="row" countries-list></div>
+<a class="tour-link" href="#/tours/{{tourListing.TourId}}"
+	ng-repeat="tourListing in tours" tour-listing> </a>

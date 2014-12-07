@@ -1,0 +1,13 @@
+<div class="row tour-shop-item">
+	<div class="col-sm-4">
+		<div class="tour-image">
+			<img ng-src="img/tours/{{tourListing.TourId}}.jpg"
+				alt="{{tourListing.Title}}">
+		</div>
+	</div>
+	<div class="col-sm-8">
+		<h3>{{tourListing.Title}}</h3>
+		<p ng-bind-html="tourListing.Description"></p>
+		<small>{{tourListing.Route}}</small>
+	</div>
+</div>

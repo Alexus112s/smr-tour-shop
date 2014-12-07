@@ -15,60 +15,23 @@
 		<p ng-bind-html="tour.Description"></p>
 		<ul class="no-list-style">
 			<li><b>Цена:</b> {{tour.Price}} евро</li>
-			<li><b>Тип тура:</b> <span ng-repeat="type in tour.tourTypes">{{type.TypeName}}{{$last
+			<li><b>Тип тура:</b> <span ng-repeat="type in tour.tourTypes"><a
+					ng-href="#tours/?tourTypeId={{type.TourTypeId}}">{{type.TypeName}}</a>{{$last
 					? '' : ', '}}</span></li>
 			<li><b>Маршрут:</b> {{tour.Route}}</li>
 			<li><b>Транспорт:</b> {{tour.Transport}}</li>
 			<li><b>Длительность:</b> {{tour.tourDays.length}}</li>
 			<li><b>Страны:</b> <span
-				ng-repeat="country in tour.tourCountries">{{country.CountryName}}{{$last
-					? '' : ', '}}</span></li>
+				ng-repeat="country in tour.tourCountries"><a
+					ng-href="#tours/?countryId={{country.CountryId}}">{{country.CountryName}}</a>{{$last
+					? '' : ', '}} </span></li>
 			<li><b>Даты выездов:</b> <span
 				ng-repeat="departure in tour.departures">{{departure.DepartureDate}}{{$last
 					? '' : ', '}}</span></li>
 		</ul>
 	</div>
 </div>
-<div class="row" ng-repeat="day in tour.tourDays">
-	<div class="col-sm-12 tour-day">
-		<h4 class="tour-day-number">
-			День {{$index + 1}} <small>{{day.Route}}</small>
-		</h4>
-		<div class="content-block tour-day-content">
-			<p ng-bind-html="day.DayContent"></p>
-			<div class="col-sm-3">
-				<div class="image-container">
-					<div class="image-block">
-						<img ng-src="{{'img/days/' + day.TourDayId + '_1.jpg'}}" alt="1">
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="image-container">
-					<div class="image-block">
-						<img ng-src="{{'img/days/' + day.TourDayId + '_2.jpg'}}" alt="2">
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="image-container">
-					<div class="image-block">
-						<img ng-src="{{'img/days/' + day.TourDayId + '_3.jpg'}}" alt="3">
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="image-container">
-					<div class="image-block">
-						<img ng-src="{{'img/days/' + day.TourDayId + '_4.jpg'}}" alt="4">
-					</div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-
-
-	</div>
+<div class="row" ng-repeat="day in tour.tourDays" tour-day></div>
 </div>
 <div class="row">
 	<div class="col-sm-12">
@@ -130,101 +93,5 @@
 		</div>
 	</div>
 </div>
-<div class="row">
-	<div class="col-sm-12">
-		<div class="content-block" ng-controller="TourOrderFormController">
-			<h4>Заказать тур</h4>
-			<form novalidate class="form-horizontal" name="tourOrderForm">
-				<div class="form-group">
-					<div class="col-sm-2">
-						<label class="control-label">Тур</label>
-					</div>
-					<div class="col-sm-6">
-						<p class="form-control-static">{{tour.Title}}</p>
-					</div>
-				</div>
-				<div ng-class="{'has-error': (tourOrderForm.departure.$touched && tourOrderForm.departure.$error.required)}"
-					class="form-group" >
-					<div class="col-sm-2">
-						<label class="control-label" for="departure">Дата выезда</label>
-					</div>
-					<div class="col-sm-6">
-						<select name="departure" 
-							id="departure" class="form-control" required
-							ng-model="tourOrder.Departure"
-							ng-options="departure.DepartureDate for departure in tour.departures"></select>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-2">
-						<label class="control-label" for="quantity">Колличество
-							человек</label>
-					</div>
-					<div ng-class="{'has-error': (tourOrderForm.quantity.$touched && tourOrderForm.quantity.$error.required)}"
-						class="col-sm-6">
-						<select name="quantity" 
-							id="quantity" class="form-control" required
-							ng-model="tourOrder.Quantity"
-							ng-options="n for n in [] | range:1:10"></select>
-					</div>
-				</div>
-				<div ng-class="{'has-error': (tourOrderForm.customerName.$dirty && tourOrderForm.customerName.$invalid)}" 
-				class="form-group">
-					<div class="col-sm-2">
-						<label class="control-label" for="customerName">Контактное
-							лицо</label>
-					</div>
-					<div class="col-sm-6">
-						<input name="customerName"
-							placeholder="введите ваше ФИО" 
-							id="customerName" class="form-control" type="text"
-							ng-model="tourOrder.CustomerName" required>
-					</div>
-				</div>
-				<div ng-class="{'has-error': (tourOrderForm.telephone.$dirty && tourOrderForm.telephone.$error.required)}"
-					class="form-group">
-					<div class="col-sm-2">
-						<label class="control-label" for="telephone">Контактный
-							телефон</label>
-					</div>
-					<div class="col-sm-6">
-						<input name="telephone" 
-							placeholder="введите контактный телефон" 
-							id="telephone" class="form-control" type="text"
-							ng-model="tourOrder.Telephone" required>
-					</div>
-				</div>
-				<div ng-class="{'has-error': (tourOrderForm.email.$dirty && tourOrderForm.email.$invalid)}"
-					class="form-group">
-					<div class="col-sm-2">
-						<label class="control-label" id="email">Контактный email</label>
-					</div>
-					<div class="col-sm-6">
-						<input name="email" 
-							placeholder="введите адрес элетронной почты" 
-							id="email" class="form-control" type="email"
-							ng-model="tourOrder.Email" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-2">
-						<label class="control-label" for="comment">Коммнетарий к
-							заказу</label>
-					</div>
-					<div class="col-sm-6">
-						<textarea placeholder="введите комментарий к заказу" 
-						for="comment" class="form-control" rows="3"
-							ng-model="tourOrder.Comment"></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-8">
-						<button ng-click="tourOrderForm.$valid && submit(tourOrderForm)" type="button"
-							class="btn pull-right btn-primary">Отправить заказ</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+<div class="row" order-form></div>
 <!-- End Project Info Column -->

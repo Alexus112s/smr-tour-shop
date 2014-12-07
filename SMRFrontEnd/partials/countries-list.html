@@ -1,0 +1,12 @@
+
+<div class="col-sm-10 col-sm-offset-1 text-center">
+	<div class="col-sm-1" ng-repeat="country in countries">
+		<a class="tour-link clearfix"
+			ng-href="#{{getLink(country.CountryId)}}"> <img
+			alt="{{country.CountryName}}"
+			ng-src="img/countries/{{country.ISOCode}}.jpg"
+			class="img-circle country-flag">
+			<h6>{{country.CountryName}}</h4>
+		</a>
+	</div>
+</div>

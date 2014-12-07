@@ -1,9 +1,9 @@
 var tourshopControllers = angular.module('tourshopControllers',
 		[ 'ngSanitize' ]);
 
-tourshopControllers.controller('TourListCtrl', [ '$scope', 'Tour',
-		function($scope, Tour) {
-			$scope.tours = Tour.query();
+tourshopControllers.controller('TourListCtrl', [ '$routeParams', '$scope',
+		'TourSearch', function($routeParams, $scope, TourSearch) {
+			$scope.tours = TourSearch.query($routeParams);
 			$scope.orderProp = 'title';
 		} ]);
 
@@ -17,11 +17,20 @@ tourshopControllers.controller('TourDetailCtrl', [ '$scope', '$routeParams',
 			});
 		} ]);
 
-tourshopControllers.controller('TourOrderFormController', [
-		'$scope',
+tourshopControllers.controller('TourOrderFormController', [ '$scope',
 		function($scope) {
 			$scope.tourOrder = {};
 			$scope.submit = function(tourOrderForm) {
 				alert('submit pressed ');
 			};
+		} ]);
+
+tourshopControllers.controller('CountriesListController', [ '$scope',
+		'Countries', '$routeParams', function($scope, Countries, $routeParams) {
+			$scope.getLink = function(countryId) {
+				var loc = $routeParams;
+				loc.countryId = countryId;
+				return $scope.path('TourListCtrl', loc);
+			}
+			$scope.countries = Countries.query();
 		} ]);

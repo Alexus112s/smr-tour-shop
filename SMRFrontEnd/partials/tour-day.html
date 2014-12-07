@@ -1,0 +1,37 @@
+<div class="col-sm-12 tour-day">
+	<h4 class="tour-day-number">
+		День {{$index + 1}} <small>{{day.Route}}</small>
+	</h4>
+	<div class="content-block tour-day-content">
+		<p ng-bind-html="day.DayContent"></p>
+		<div class="col-sm-3">
+			<div class="image-container">
+				<div class="image-block">
+					<img ng-src="{{'img/days/' + day.TourDayId + '_1.jpg'}}" alt="1">
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="image-container">
+				<div class="image-block">
+					<img ng-src="{{'img/days/' + day.TourDayId + '_2.jpg'}}" alt="2">
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="image-container">
+				<div class="image-block">
+					<img ng-src="{{'img/days/' + day.TourDayId + '_3.jpg'}}" alt="3">
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="image-container">
+				<div class="image-block">
+					<img ng-src="{{'img/days/' + day.TourDayId + '_4.jpg'}}" alt="4">
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
