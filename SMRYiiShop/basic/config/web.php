@@ -31,8 +31,10 @@ $config = [
 										'extraPatterns' => [ 
 												'GET search' => 'search' 
 										] 
-								] 
-						] 
+								],
+								'login' => 'login/login' 
+						]
+						 
 				],
 				'request' => [
 						// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -42,8 +44,7 @@ $config = [
 						'class' => 'yii\caching\FileCache' 
 				],
 				'user' => [ 
-						'identityClass' => 'app\models\User',
-						'enableAutoLogin' => true,
+						'identityClass' => 'app\models\dataModels\User',
 						'enableSession' => false,
 						'loginUrl' => null 
 				],

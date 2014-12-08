@@ -5,6 +5,9 @@ tourshopApp.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/tours', {
 		templateUrl : 'partials/tour-list.html',
 		controller : 'TourListCtrl'
+	}).when('/login', {
+		templateUrl : 'partials/login.html',
+		//controller : 'TourListCtrl'
 	}).when('/tours/:tourId', {
 		templateUrl : 'partials/tour-details.html',
 		controller : 'TourDetailCtrl'

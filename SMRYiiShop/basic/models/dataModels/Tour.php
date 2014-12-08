@@ -60,7 +60,8 @@ class Tour extends \yii\db\ActiveRecord {
 						[ 
 								'Includes',
 								'Excludes',
-								'Description' 
+								'Description',
+								'RouteMap' 
 						],
 						'string' 
 				],
@@ -83,13 +84,6 @@ class Tour extends \yii\db\ActiveRecord {
 						],
 						'string',
 						'max' => 300 
-				],
-				[ 
-						[ 
-								'RouteMap' 
-						],
-						'string',
-						'max' => 350 
 				],
 				[ 
 						[ 
