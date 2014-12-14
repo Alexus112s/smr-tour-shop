@@ -43,7 +43,7 @@
 
 
 	<!-- Navigation & Logo-->
-	<div class="mainmenu-wrapper">
+	<div class="mainmenu-wrapper" ng-controller="MenuCtrl">
 		<div class="container">
 			<div class="menuextras">
 				<div class="extras">
@@ -65,7 +65,11 @@
 								</ul>
 							</div>
 						</li>
-						<li><a href="#/login">Login</a></li>
+						<li ng-show="user.name == ''"><a href="#/login">Login</a></li>
+						<li ng-show="user.name != ''">
+						{{user.name}} <a ng-click="logout()"
+						 href="#/">logout</a>
+						</li>
 					</ul>
 				</div>
 			</div>

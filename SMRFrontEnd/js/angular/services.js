@@ -16,21 +16,30 @@ tourshopServices.factory('Countries', [ '$resource', function($resource) {
 	return $resource(serverUrl + '/countries', {});
 } ]);
 
-tourshopServices.factory('User', [ '$resource', '$location',
+tourshopServices.factory('User', [
+		'$resource',
+		'$location',
 		function($resource, $location) {
 			var userService = {};
+			var user = {};
+			user.name = '';
+			user.accessToken = '';
 			var loginResource = $resource(serverUrl + '/login', {});
-			userService.Login = function(login, password, rememberMe) {
-				var user = loginResource.get({
-					login : login,
-					password : password
-				}, function() {
-					if (rememberMe) {
-						localStorage.setItem('access-token', user.accessToken);
-						localStorage.setItem('user-name', user.name);
+			userService.Login = function(loginForm) {
+				loginResource.get({
+					email : loginForm.email,
+					password : loginForm.password
+				}, function(response) {
+					if (loginForm.rememberMe) {
+						localStorage.setItem('access-token',
+								response.accessToken);
+						localStorage.setItem('user-name', response.name);
 					}
-					sessionStorage.setItem('access-token', user.accessToken);
-					sessionStorage.setItem('user-name', user.name);
+					sessionStorage
+							.setItem('access-token', response.accessToken);
+					sessionStorage.setItem('user-name', response.name);
+					user.accessToken = response.accessToken;
+					user.name = response.name;
 				}, function() {
 					user = null;
 				});
@@ -41,20 +50,20 @@ tourshopServices.factory('User', [ '$resource', '$location',
 				localStorage.removeItem('user-name');
 				sessionStorage.removeItem('access-token');
 				sessionStorage.removeItem('user-name');
+				user.name = '';
+				user.accessToke = '';
+				
 			};
 			userService.GetUser = function() {
-				var user = {};
 				if (localStorage.getItem('access-token') !== null) {
 					user.accessToken = localStorage.getItem('access-token');
 					user.name = localStorage.getItem('user-name');
-					return user;
 				}
 				if (sessionStorage.getItem('access-token') !== null) {
 					user.accessToken = sessionStorage.getItem('access-token');
 					user.name = sessionStorage.getItem('user-name');
-					return user;
 				}
-				return null;
+				return user;
 			}
 			return userService;
 		} ]);

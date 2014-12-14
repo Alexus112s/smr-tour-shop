@@ -1,23 +1,27 @@
 <div class="row">
 	<div class="col-sm-5">
 		<div class="basic-login">
-			<form role="form" role="form">
+			<form role="form" role="form" novalidate name="loginForm">
 				<div class="form-group">
-					<label for="login-username"><i class="icon-user"></i> <b>Логин
-							or Email</b></label> <input class="form-control" id="login-username"
-						type="text" placeholder="">
-				</div>
-				<div class="form-group">
-					<label for="login-password"><i class="icon-lock"></i> <b>Пароль</b></label>
-					<input class="form-control" id="login-password" type="password"
+					<label for="login-username"><i class="icon-user"></i><b>Email</b></label> 
+							<input ng-model="user.email"
+							class="form-control" id="login-username" type="text"
 						placeholder="">
 				</div>
 				<div class="form-group">
-					<label class="checkbox"> <input type="checkbox">
+					<label for="login-password"><i class="icon-lock"></i> <b>Пароль</b></label>
+					<input ng-model="user.password" 
+					class="form-control" id="login-password" type="password"
+						placeholder="">
+				</div>
+				<div class="form-group">
+					<label class="checkbox"> <input ng-model="user.rememberMe"
+					 type="checkbox">
 						Оставаться в системе
 					</label> <a href="page-password-reset.html" class="forgot-password">Забыли
 						пароль?</a>
-					<button type="submit" class="btn pull-right">Login</button>
+					<button ng-click="login(user)"
+					type="submit" class="btn pull-right">Login</button>
 					<div class="clearfix"></div>
 				</div>
 			</form>
