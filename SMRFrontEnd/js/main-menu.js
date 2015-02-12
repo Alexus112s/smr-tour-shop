@@ -30,7 +30,7 @@ var mainMenu = (function() {
 			}
 			return false;
 		}
-		else window.location = $item.find('a').attr('href');
+		//else window.location = $item.find('a').attr('href');
 	}
 
 	function close( event ) {

@@ -8,6 +8,10 @@ tourshopApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/login', {
 		templateUrl : 'partials/login.html',
 		controller : 'LoginCtrl'
+	}).when('/about', {
+		templateUrl : 'partials/about-us.html'
+	}).when('/contacts', {
+		templateUrl : 'partials/contacts.html'
 	}).when('/tours/:tourId', {
 		templateUrl : 'partials/tour-details.html',
 		controller : 'TourDetailCtrl'
@@ -51,7 +55,6 @@ tourshopApp.run(function($route, $rootScope) {
 		}
 
 		// No such controller in route definitions
-
 		return undefined;
 	};
 });

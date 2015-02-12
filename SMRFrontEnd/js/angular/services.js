@@ -22,6 +22,14 @@ tourshopServices.factory('User', [
 		function($resource, $location) {
 			var userService = {};
 			var user = {};
+			if (localStorage.getItem('access-token') !== null) {
+				user.accessToken = localStorage.getItem('access-token');
+				user.name = localStorage.getItem('user-name');
+			}
+			if (sessionStorage.getItem('access-token') !== null) {
+				user.accessToken = sessionStorage.getItem('access-token');
+				user.name = sessionStorage.getItem('user-name');
+			}
 			user.name = '';
 			user.accessToken = '';
 			var loginResource = $resource(serverUrl + '/login', {});
@@ -41,6 +49,7 @@ tourshopServices.factory('User', [
 					user.accessToken = response.accessToken;
 					user.name = response.name;
 				}, function() {
+					//userService.Logout();
 					user = null;
 				});
 				return user;
@@ -52,17 +61,9 @@ tourshopServices.factory('User', [
 				sessionStorage.removeItem('user-name');
 				user.name = '';
 				user.accessToke = '';
-				
+
 			};
 			userService.GetUser = function() {
-				if (localStorage.getItem('access-token') !== null) {
-					user.accessToken = localStorage.getItem('access-token');
-					user.name = localStorage.getItem('user-name');
-				}
-				if (sessionStorage.getItem('access-token') !== null) {
-					user.accessToken = sessionStorage.getItem('access-token');
-					user.name = sessionStorage.getItem('user-name');
-				}
 				return user;
 			}
 			return userService;
